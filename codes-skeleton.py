@@ -24,7 +24,7 @@ class mocoder():
                '001':'u','0001':'v','011':'w','1001':'x','1011':'y','1100':'z','01111':'1','00111':'2','00011':'3',
                '00001':'4','00000':'5','10000':'6','11000':'7','11100':'8','11110':'9','11111':'0'}
 
-
+#Test: 00003111301030003030004
     def __init__(self,sport=True):
         if sport:
             self.serial_port = arduino_connect.basic_connect()
@@ -67,6 +67,7 @@ class mocoder():
             self.current_word = ""
         elif(number==self.symbol_pause):
             try:
+                print(self.current_symbol)
                 self.current_word += self.morse_codes[self.current_symbol]
                 self.current_symbol = ""
             except Exception:
