@@ -24,7 +24,7 @@ class mocoder():
                '001':'u','0001':'v','011':'w','1001':'x','1011':'y','1100':'z','01111':'1','00111':'2','00011':'3',
                '00001':'4','00000':'5','10000':'6','11000':'7','11100':'8','11110':'9','11111':'0'}
 
-#Test: 00003111301030003030004
+#Test: 00031113000
     def __init__(self,sport=True):
         if sport:
             self.serial_port = arduino_connect.basic_connect()
@@ -59,22 +59,23 @@ class mocoder():
                 self.process_signal(int(chr(s[1])))
             else:
                 self.process_signal(int(s))
-
+    ##Proccesses number recieved by Arduiono in accordance to symbol coded
     def process_signal(self, number):
         print(number)
-        if(number==self.word_pause):
-            self.current_message += self.current_word
+        if number==self.word_pause:
+            self.current_message += self.current_word+" "
             self.current_word = ""
-        elif(number==self.symbol_pause):
+        elif number==self.symbol_pause:
             try:
+                ##Tries to convert current_symbol to the letter associated with it
                 print(self.current_symbol)
                 self.current_word += self.morse_codes[self.current_symbol]
                 self.current_symbol = ""
             except Exception:
                 print("No morse code symbol found")
-        elif(number==self.dash):
+        elif number==self.dash:
             self.current_symbol += "1"
-        elif(number==self.dot):
+        elif number==self.dot:
             self.current_symbol += "0"
 
         print(self.current_word + self.current_message)
