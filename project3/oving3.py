@@ -8,10 +8,10 @@ class Coder:
         f = open(filepath)
         s = ""
         for line in f.readlines():
-            s += line
+            s += line.rstrip()
             s += " "
-
-        return s
+        s.strip("\n")
+        return s.lower()
 
     def encode(self, m):
         pass
@@ -41,7 +41,7 @@ class AsciiCoder(Coder):
     def encode(self, string):
         bins = ""
         for symbol in string:
-            print(format(ord(symbol), "#010b")[2:])
+
 
             bins += (format(ord(symbol), "#010b")[2:])
 
@@ -64,16 +64,17 @@ class AsciiCoder(Coder):
 
 class HuffCoder(Coder):
     tree = ""
-
+    bina = 8
 
     def encode(self, message):
 
-        tree = self.build_tree(dict)
+
         self.encoded =  btl.huffman_encode(message, self.tree)
         return self.encoded.__repr__()
 
     def build_tree(self, filepath):
         freqs = kdprims.calc_char_freqs(filepath)
+
         pq = btl.init_queue(freqs)
         while len(pq) > 1:
             n1 = pq.pop()
@@ -174,6 +175,7 @@ def Ascii_test(msg="Hello World", filepath=False,lz_flag=False):
 
 def Huff_test(msg="Hello World",filepath=False,lz_flag=False):
     coder = HuffCoder()
+    coder.build_tree("corpus1.txt")
     if(filepath):
         msg = coder.gen_message_from_file(filepath)
     test(coder, msg, lz_flag)
@@ -183,7 +185,7 @@ def Huff_test(msg="Hello World",filepath=False,lz_flag=False):
 def LZ_test(msg="0"*20, filepath=False):
     coder = LZCoder()
     if(filepath):
-        msg = coder.gen_message_from_file(filepath)
+        msg = coder.gen_message_from_file(filepath).lower()
     test(coder, msg ,False)
 
 
@@ -191,8 +193,28 @@ def LZ_test(msg="0"*20, filepath=False):
 def test(coder, message, lz):
     coder.encode_decode_test(message)
     if lz:
-        lz =LZCoder()
+        lz = LZCoder()
         lz.encode_decode_test(coder.encode(message))
 
-Huff_test(=s)
 
+Ascii_test("", "sample1.txt", True)
+Huff_test("", "sample1.txt", True)
+Ascii_test("", "sample2.txt", True)
+Huff_test("", "sample2.txt", True)
+Ascii_test("", "sample3.txt", True)
+Huff_test("", "sample3.txt", True)
+
+Ascii_test("e"*100, False, True)
+Huff_test("e"*100, False, True)
+Ascii_test("e"*1000, False, True)
+Huff_test("e"*1000, False, True)
+Ascii_test("x"*1000, False, True)
+Huff_test("x"*1000, False, True)
+Ascii_test("ntnu"*100, False, True)
+Huff_test("ntnu"*100, False, True)
+Ascii_test("ntnu"*1000, False, True)
+Huff_test("ntnu"*1000, False, True)
+
+LZ_test("", "tumbler_bit.txt")
+LZ_test("", "potus_bit.txt")
+LZ_test("", "rings_bit.txt")

@@ -1,4 +1,4 @@
- In an automobile plant, no one man puts together the whole car.
+In an automobile plant, no one man puts together the whole car.
 There are "body men" who attach fenders and doors. There are "spring
 men" who put the springs in place. There are "engine men," who
 install the engine, and so forth. The specialists add up to teamwork.
@@ -19,7 +19,7 @@ specialized. Groups of cells that look alike and work together in
 a special life function are called tissues. Which of the tissues in
 your body is most visible to you?
 The tissue of your skin of course. And what do you think is its
-special job?
+special job? Quoran;
 
   Every morning the first scientists to arrive at the lab rushed
 to the incubator to look at the Petri dishes and culture tubes.
@@ -176,4 +176,4 @@ hid them and showed the Japanese only plaster casts, carefully colored so
 that they would look like the fossils themselves.
 
 The corpus also needs to include numbers, so 0,1,2,3,4,5,6,7,8,9 and maybe a $ sign along
-with a few more symbols: &%$#@*
+with a few more symbols: &%$#@*, I Y
