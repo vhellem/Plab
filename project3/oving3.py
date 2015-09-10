@@ -4,6 +4,7 @@ import math
 
 class Coder:
     bina = 1
+    #Strips alll linespaces and turns message into lowercase
     def gen_message_from_file(self, filepath):
         f = open(filepath)
         s = ""
@@ -17,7 +18,7 @@ class Coder:
         pass
     def decode(self, m):
         pass
-
+    ##Encodes and decodes message and prints it out
     def encode_decode_test(self, message, ):
         encoded = self.encode(message)
         decoded = self.decode(encoded)
@@ -30,9 +31,9 @@ class Coder:
         if(message==decoded):
             print("They are equal)")
         else:
-            print("You fucked up")
+            print("They are not equal")
         comp = (1-(len(encoded)/(len(message)*self.bina)))
-        print("Compression fraction is" + str(comp))
+        print("Compression fraction is " + str(comp))
 
 
 class AsciiCoder(Coder):
@@ -67,8 +68,6 @@ class HuffCoder(Coder):
     bina = 8
 
     def encode(self, message):
-
-
         self.encoded =  btl.huffman_encode(message, self.tree)
         return self.encoded.__repr__()
 
@@ -81,12 +80,9 @@ class HuffCoder(Coder):
             n2 = pq.pop()
             pq.insert(btl.Node(n1,n2))
         self.tree = pq[0]
+
     def decode(self, m):
         return btl.huffman_decode(self.encoded, self.tree)
-
-
-#ascii = AsciiCoder()
-#ascii.encode_decode_test("hello")
 
 
 class LZCoder(Coder):
@@ -196,25 +192,25 @@ def test(coder, message, lz):
         lz = LZCoder()
         lz.encode_decode_test(coder.encode(message))
 
-
-Ascii_test("", "sample1.txt", True)
-Huff_test("", "sample1.txt", True)
-Ascii_test("", "sample2.txt", True)
-Huff_test("", "sample2.txt", True)
-Ascii_test("", "sample3.txt", True)
-Huff_test("", "sample3.txt", True)
-
-Ascii_test("e"*100, False, True)
-Huff_test("e"*100, False, True)
-Ascii_test("e"*1000, False, True)
-Huff_test("e"*1000, False, True)
-Ascii_test("x"*1000, False, True)
-Huff_test("x"*1000, False, True)
-Ascii_test("ntnu"*100, False, True)
-Huff_test("ntnu"*100, False, True)
-Ascii_test("ntnu"*1000, False, True)
-Huff_test("ntnu"*1000, False, True)
-
-LZ_test("", "tumbler_bit.txt")
-LZ_test("", "potus_bit.txt")
-LZ_test("", "rings_bit.txt")
+#
+# Ascii_test("", "sample1.txt", True)
+# Huff_test("", "sample1.txt", True)
+# Ascii_test("", "sample2.txt", True)
+# Huff_test("", "sample2.txt", True)
+# Ascii_test("", "sample3.txt", True)
+# Huff_test("", "sample3.txt", True)
+#
+# Ascii_test("e"*100, False, True)
+# Huff_test("e"*100, False, True)
+# Ascii_test("e"*1000, False, True)
+# Huff_test("e"*1000, False, True)
+# Ascii_test("x"*1000, False, True)
+# Huff_test("x"*1000, False, True)
+#Ascii_test("ntnu"*100, False, True)
+#Huff_test("ntnu"*100, False, True)
+#Ascii_test("ntnu"*1000, False, True)
+#Huff_test("ntnu"*1000, False, True)
+#
+# LZ_test("", "tumbler_bit.txt")
+# LZ_test("", "potus_bit.txt")
+# LZ_test("", "rings_bit.txt")
