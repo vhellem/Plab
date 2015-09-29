@@ -12,6 +12,7 @@ class Coder:
             s += line.rstrip()
             s += " "
         s.strip("\n")
+        f.close()
         return s.lower()
 
     def encode(self, m):
@@ -196,7 +197,7 @@ def test(coder, message, lz):
 # Ascii_test("", "sample1.txt", True)
 # Huff_test("", "sample1.txt", True)
 # Ascii_test("", "sample2.txt", True)
-# Huff_test("", "sample2.txt", True)
+#Huff_test("", "sample2.txt", True)
 # Ascii_test("", "sample3.txt", True)
 # Huff_test("", "sample3.txt", True)
 #
@@ -209,8 +210,10 @@ def test(coder, message, lz):
 #Ascii_test("ntnu"*100, False, True)
 #Huff_test("ntnu"*100, False, True)
 #Ascii_test("ntnu"*1000, False, True)
-#Huff_test("ntnu"*1000, False, True)
+#Huff_test("", False, True)
 #
-# LZ_test("", "tumbler_bit.txt")
-# LZ_test("", "potus_bit.txt")
+#LZ_test("", "tumbler_bit.txt")
+LZ_test("", "potus_bit.txt")
 # LZ_test("", "rings_bit.txt")
+#LZ_test("01"*250)
+#Huff_test("tee"*1000, False, True)
